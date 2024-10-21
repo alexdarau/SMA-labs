@@ -39,7 +39,7 @@ class ComposeActivity : ComponentActivity() {
 
     @Composable
     private fun ComposeScreen() {
-        var text by remember { mutableStateOf(intent.getStringExtra(Intent.EXTRA_TEXT).toString())}
+        var text by remember { mutableStateOf("")}
 
 
         Surface(color = Color.White) {

@@ -1,5 +1,5 @@
 
-package upt.ac.lab2
+package upt.ac.lab2.presentation
 
 import android.app.Activity
 import android.content.Intent

@@ -58,8 +58,6 @@ class MainActivity : AppCompatActivity() {
     @Composable
     private fun HomeScreen(viewModel: HomeViewModel) {
         val chiuitListState = viewModel.chiuitListState.collectAsState()
-        println("Chiuuuuuuuuuuuuuuit")
-        println(chiuitListState.value)
         Log.d("myTag", chiuitListState.value.toString());
         Surface(color = Color.White) {
             Box(modifier = Modifier.fillMaxSize()) {

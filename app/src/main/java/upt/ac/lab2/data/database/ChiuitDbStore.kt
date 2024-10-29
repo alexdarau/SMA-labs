@@ -1,6 +1,5 @@
 package upt.ac.lab2.data.database
 
-import android.util.Log
 import ro.upt.ac.chiuitter.domain.Chiuit
 import ro.upt.ac.chiuitter.domain.ChiuitRepository
 

@@ -15,12 +15,10 @@ class HomeViewModel(private val chiuitRepository: ChiuitRepository) : ViewModel(
 
     private fun retrieveChiuits() {
         _chiuitListState.value = chiuitRepository.getAll()
-        Log.d("myTag1", _chiuitListState.value.toString())
     }
 
     fun addChiuit(description: String) {
        val response = chiuitRepository.addChiuit(Chiuit(System.currentTimeMillis(), description))
-        Log.d("myTag1", response.toString())
         retrieveChiuits()
     }
 

@@ -6,4 +6,5 @@
     <string name="check_action_icon_content_description">Check action icon</string>
     <string name="send_action_icon_content_description">Send action icon</string>
     <string name="edit_action_icon_content_description">Edit action icon</string>
+    <string name="delete_action_icon_content_description">Delete action icon</string>
 </resources>

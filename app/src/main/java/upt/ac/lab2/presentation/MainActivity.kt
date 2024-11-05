@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
@@ -97,8 +99,18 @@ class MainActivity : AppCompatActivity() {
                         .padding(8.dp),
                     onClick = { shareChiuit(chiuit.description) }) {
                     Icon(
-                        Icons.Filled.Send,
+                        Icons.Filled.Share,
                         stringResource(R.string.send_action_icon_content_description)
+                    )
+                }
+                Button(
+                    modifier = Modifier
+                        .weight(0.2f)
+                        .padding(8.dp),
+                    onClick = { viewModel.removeChiuit(chiuit) }) {
+                    Icon(
+                        Icons.Filled.Delete,
+                        stringResource(R.string.delete_action_icon_content_description)
                     )
                 }
             }
@@ -138,6 +150,7 @@ class MainActivity : AppCompatActivity() {
     private fun setChiuitText(resultText: String?) {
         if(resultText !== null) {
             // TODO 1: Instantiate a new chiuit object then delegate the addition to the [viewModel].
+            viewModel.addChiuit(resultText)
         }
     }
 

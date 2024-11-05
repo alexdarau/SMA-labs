@@ -18,7 +18,7 @@ class HomeViewModel(private val chiuitRepository: ChiuitRepository) : ViewModel(
     }
 
     fun addChiuit(description: String) {
-       val response = chiuitRepository.addChiuit(Chiuit(System.currentTimeMillis(), description))
+       chiuitRepository.addChiuit(Chiuit(System.currentTimeMillis(), description))
         retrieveChiuits()
     }
 

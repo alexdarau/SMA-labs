@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import ro.upt.ac.chiuitter.domain.Chiuit
 
 
@@ -12,13 +13,11 @@ import ro.upt.ac.chiuitter.domain.Chiuit
 interface ChiuitDao {
 
     @Query("SELECT * FROM chiuits")
-    fun getAll(): List<ChiuitEntity>
+    fun getAll(): Flow<List<ChiuitEntity>>
 
-    // TODO 3: Define the insert operation.
     @Insert
     fun insert(chiuit: ChiuitEntity)
 
-    // TODO 6: Define the delete operation.
     @Delete
     fun delete(chiuit: ChiuitEntity)
 

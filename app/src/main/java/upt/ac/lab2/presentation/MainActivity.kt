@@ -15,7 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.runtime.collectAsState
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -24,7 +24,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,12 +33,10 @@ import androidx.compose.ui.unit.dp
 import ro.upt.ac.chiuitter.domain.Chiuit
 import ro.upt.ac.chiuitter.presentation.HomeViewModel
 import upt.ac.lab2.R
-import upt.ac.lab2.data.database.ChiuitDbStore
-import upt.ac.lab2.data.database.RoomDatabase
+import upt.ac.lab2.data.firebase.FirebaseChiuitStore
 import upt.ac.lab2.presentation.ComposeActivity.Companion.EXTRA_TEXT
 
 class MainActivity : AppCompatActivity() {
-
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -53,13 +50,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = HomeViewModel(ChiuitDbStore(RoomDatabase.getDb(this)))
+        viewModel = HomeViewModel(FirebaseChiuitStore())
         setContent { HomeScreen(viewModel) }
     }
 
     @Composable
     private fun HomeScreen(viewModel: HomeViewModel) {
-        val chiuitListState = viewModel.chiuitListState.collectAsState()
+        val chiuitListState = viewModel.chiuitListState.collectAsState(emptyList())
         Log.d("myTag", chiuitListState.value.toString());
         Surface(color = Color.White) {
             Box(modifier = Modifier.fillMaxSize()) {
@@ -114,7 +111,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
-            // TODO 4: Add a new button that has the purpose to delete a chiuit.
         }
     }
 
@@ -149,7 +145,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setChiuitText(resultText: String?) {
         if(resultText !== null) {
-            // TODO 1: Instantiate a new chiuit object then delegate the addition to the [viewModel].
             viewModel.addChiuit(resultText)
         }
     }

@@ -1,8 +1,10 @@
 package ro.upt.ac.chiuitter.domain
 
+import kotlinx.coroutines.flow.Flow
+
 interface ChiuitRepository {
 
-    fun getAll(): List<Chiuit>
+    fun getAll(): Flow<List<Chiuit>>
 
     fun addChiuit(chiuit: Chiuit)
 
